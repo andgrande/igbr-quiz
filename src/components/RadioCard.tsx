@@ -10,9 +10,12 @@ export default function RadioCard(props) {
   const checkbox = getCheckboxProps()
 
   const handleSelection = () => {
-    console.log(props.id)
     handleIncreaseQuestionNumber(props.id)
   }
+
+  console.log('receptor', props.value)
+  console.log('receptor', props.checked)
+  console.log('-------------')
 
   return (
     <Box as='label' width="100%">
@@ -23,7 +26,6 @@ export default function RadioCard(props) {
         borderWidth='1px'
         borderRadius='md'
         boxShadow='md'
-        defaultChecked={false}
         _checked={{
           bg: 'teal.600',
           color: 'white',
