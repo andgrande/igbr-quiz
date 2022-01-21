@@ -1,30 +1,44 @@
 import { extendTheme, ThemeConfig } from '@chakra-ui/react';
-import { mode } from "@chakra-ui/theme-tools"
+import { mode, createBreakpoints } from "@chakra-ui/theme-tools"
 
 const config: ThemeConfig = {
-    initialColorMode: 'dark',
+    initialColorMode: 'light',
     useSystemColorMode: false,
 }
 
+const breakpoints = createBreakpoints({
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px',
+    '2xl': '1536px',
+});
+
+const fonts = ({
+    body: 'Manrope',
+    heading: 'Manrope',
+});
+
+const colors = ({
+    gray: {
+        "50": "#EEEEF2",
+        "100": "#D1D2DC",
+        "200": "#B3B5C6",
+        "300": "#9699B0",
+        "400": "#797D9A",
+        "500": "#616480",
+        "600": "#4B4D63",
+        "700": "#313147",
+        "800": "#272733",
+        "900": "#181B23",
+    },
+});
+
 export const theme = extendTheme({
-    colors: {
-        gray: {
-            "50": "#EEEEF2",
-            "100": "#D1D2DC",
-            "200": "#B3B5C6",
-            "300": "#9699B0",
-            "400": "#797D9A",
-            "500": "#616480",
-            "600": "#4B4D63",
-            "700": "#313147",
-            "800": "#272733",
-            "900": "#181B23",
-        }
-    },
-    fonts: {
-        body: 'Manrope',
-        heading: 'Manrope',
-    },
+    colors,
+    fonts,
+    config,
+    breakpoints,
     styles: {
         global: (props) => ({
             body: {
@@ -33,5 +47,4 @@ export const theme = extendTheme({
             }
         })
     },
-    config,
 });

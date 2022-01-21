@@ -12,7 +12,7 @@ interface QuestionsProviderData {
     questionOption: number;
     questions: QuestionsParams[];
     resultsReady: boolean;
-    quizResults: {};
+    quizResults: tempResult | null;
     handleLoadQuestions: () => void;
     handleIncreaseQuestionNumber: (answerId?: string) => void;
     handleDecreaseQuestionNumber: () => void;
@@ -113,6 +113,7 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
         setQuizResults(data.result);
 
         // ENABLE WHEN LIVE
+
         // await api_faunadb.post('/saveResults', {
         //     results           
         // });
