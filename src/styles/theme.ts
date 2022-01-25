@@ -8,7 +8,8 @@ const config: ThemeConfig = {
 
 const breakpoints = createBreakpoints({
     sm: '320px',
-    md: '768px',
+    md: '640px',
+    heightMd: '720px',
     lg: '960px',
     xl: '1200px',
     '2xl': '1536px',

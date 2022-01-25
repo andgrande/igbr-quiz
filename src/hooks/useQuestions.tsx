@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { QuestionsParams, questions as tempQuestions } from '../generics/QuestionsOptions';
-import { useToast } from '@chakra-ui/react';
+import { useMediaQuery, useToast,  } from '@chakra-ui/react';
 import { api_faunadb } from '../services/api_faunadb';
 import axios from 'axios';
 
@@ -9,10 +9,13 @@ interface QuestionsProviderProps {
 }
 
 interface QuestionsProviderData {
+    isLargerThan1080p: boolean;
+    showHome: boolean;
     questionOption: number;
     questions: QuestionsParams[];
     resultsReady: boolean;
     quizResults: tempResult | null;
+    handleStartQuiz: () => void;
     handleLoadQuestions: () => void;
     handleIncreaseQuestionNumber: (answerId?: string) => void;
     handleDecreaseQuestionNumber: () => void;
@@ -29,6 +32,8 @@ interface tempResult {
 const QuestionsContext = createContext<QuestionsProviderData>({} as QuestionsProviderData);
 
 export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Element {
+    const [ isLargerThan1080p ] = useMediaQuery("(min-width: 1080px)");
+    const [ showHome, setShowHome ] = useState<boolean>(true);
     const [ questionOption, setQuestionOption ] = useState<number>(0);
     const [ questions, setQuestions ] = useState<QuestionsParams[]>([
         {
@@ -46,6 +51,10 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
 
     const toast = useToast();
 
+    const handleStartQuiz = () => {
+        setShowHome(false);
+    }
+
     const handleLoadQuestions = async () => {
 
         // UNCOMMENT THIS BLOCK OF CODE TO INTEGRATE WITH FAUNADB
@@ -61,7 +70,8 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
         //     return new Error('Could not load questions.')
         // }
 
-        setQuestions(tempQuestions);
+        setShowHome(true);
+        setQuestions(JSON.parse(JSON.stringify(tempQuestions)));
         setResultsReady(false);
         setQuestionOption(0);
         setQuizResults(null);
@@ -107,7 +117,7 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
         });
 
         const { data } = await axios.post('/api/calculateResults', {
-            results         
+            results
         });
 
         setQuizResults(data.result);
@@ -124,16 +134,19 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
     }
 
     return (
-        <QuestionsContext.Provider value={{ 
-            questionOption, 
+        <QuestionsContext.Provider value={{
+            isLargerThan1080p,
+            showHome,
+            questionOption,
             resultsReady,
             quizResults,
             questions,
-            handleLoadQuestions, 
-            handleIncreaseQuestionNumber, 
-            handleDecreaseQuestionNumber, 
-            handleCheckResults, 
-            handleCheckAnswers 
+            handleStartQuiz,
+            handleLoadQuestions,
+            handleIncreaseQuestionNumber,
+            handleDecreaseQuestionNumber,
+            handleCheckResults,
+            handleCheckAnswers
         }}>
             { children }
         </QuestionsContext.Provider>

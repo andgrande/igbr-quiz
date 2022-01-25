@@ -1,5 +1,5 @@
 import { Box, useColorMode, useRadio } from "@chakra-ui/react"
-import { useQuestionsContext } from '../hooks/useQuestions';
+import { useQuestionsContext } from '../../hooks/useQuestions';
 
 // 1. Create a component that consumes the `useRadio` hook
 export default function RadioCard(props) {
@@ -27,7 +27,7 @@ export default function RadioCard(props) {
         cursor='pointer'
         borderWidth='1px'
         borderRadius='md'
-        boxShadow={colorMode === 'light' ? 'md' : 'dark-lg'}
+        boxShadow={ colorMode === 'light' ? 'md' : 'dark-lg' }
         _checked={{
           bg: 'teal.600',
           color: 'white',
