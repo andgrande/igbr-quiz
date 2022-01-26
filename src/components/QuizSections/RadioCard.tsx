@@ -1,8 +1,8 @@
 import { Box, useColorMode, useRadio, UseRadioProps } from "@chakra-ui/react"
+import React from "react";
 import { useQuestionsContext } from '../../hooks/useQuestions';
 
-// 1. Create a component that consumes the `useRadio` hook
-export default function RadioCard(props: UseRadioProps | undefined) {
+export default function RadioCard(props: any) {
   const { handleIncreaseQuestionNumber } = useQuestionsContext();
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
@@ -14,10 +14,6 @@ export default function RadioCard(props: UseRadioProps | undefined) {
   const handleSelection = () => {
     handleIncreaseQuestionNumber(props.id)
   }
-
-  // console.log('receptor', props.value)
-  // console.log('receptor', props.checked)
-  // console.log('-------------')
 
   return (
     <Box as='label' width="100%">

@@ -41,7 +41,7 @@ export const theme = extendTheme({
     config,
     breakpoints,
     styles: {
-        global: (props) => ({
+        global: (props: any) => ({
             body: {
                 bg: mode('whiteAlpha.900', 'gray.900')(props),
                 color: mode('gray.800', 'gray.50')(props),

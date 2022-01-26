@@ -7,7 +7,6 @@ export default function QuestionsCard() {
         questionOption,
         questions,
         handleCheckResults,
-        handleCheckAnswers
     } = useQuestionsContext();
 
     const { getRootProps, getRadioProps } = useRadioGroup({

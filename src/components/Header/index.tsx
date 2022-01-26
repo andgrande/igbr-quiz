@@ -18,7 +18,9 @@ export default function Header() {
             alignItems="center"
             alignContent="center"
         >
-            <Heading as="h1" ml={{ base: "5px", sm: "50px", md: "0px", lg: "0px" }} fontSize={{ base: "30px", sm: "35px", md: "45px", lg: "50px"}} >Camila's Quiz</Heading>
+            <Heading as="h1" ml={{ base: "5px", sm: "50px", md: "0px", lg: "0px" }} fontSize={{ base: "30px", sm: "35px", md: "45px", lg: "50px"}} >
+                {"Camila's Quiz"}
+            </Heading>
             
             <IconButton 
                 aria-label="Alternar modo de cor"
