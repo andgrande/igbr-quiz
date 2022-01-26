@@ -40,7 +40,7 @@ export default function Quiz() {
                     <>
                         <Box
                             // SHOULD DEFINE COLORS
-                            backgroundColor={colorMode === 'dark' ? "gray.700" : "gray.50"}
+                            // backgroundColor={colorMode === 'dark' ? "gray.700" : "gray.50"}
                             borderRadius="10"
                             mt={{ base: "4px", md: "8px", lg: "10px" }}
                             p={{ base: "20px", md: "30px", lg: "40px" }}
