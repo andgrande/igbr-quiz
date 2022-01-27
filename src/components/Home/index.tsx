@@ -29,7 +29,7 @@ export const Home = () => {
                 backgroundRepeat="no-repeat"
             >
                 {!isLargerThan1080p && (
-                    <Flex flex={1} mt="25%" color="gray.900" >
+                    <Flex flex="1" mt="25%" color="gray.900" >
                         <BeginButton fixedColor="whiteAlpha.600" />
                     </Flex>
                 )}

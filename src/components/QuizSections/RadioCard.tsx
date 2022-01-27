@@ -6,6 +6,9 @@ export default function RadioCard(props: any) {
   const { handleIncreaseQuestionNumber } = useQuestionsContext();
   const { getInputProps, getCheckboxProps } = useRadio(props)
 
+  const { questions, questionOption } = useQuestionsContext();
+  const isThisChecked = questions[questionOption].answer === props.id;
+  
   const { colorMode } = useColorMode()
 
   const input = getInputProps()
@@ -20,15 +23,11 @@ export default function RadioCard(props: any) {
       <input {...input} />
       <Box
         {...checkbox}
+        {...isThisChecked && { bg: 'teal.600', color: 'white' }}
         cursor='pointer'
         borderWidth='1px'
         borderRadius='md'
         boxShadow={ colorMode === 'light' ? 'md' : 'dark-lg' }
-        _checked={{
-          bg: 'teal.600',
-          color: 'white',
-          borderColor: 'teal.600',
-        }}
         _focus={{
           boxShadow: 'outline',
         }}

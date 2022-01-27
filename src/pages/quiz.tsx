@@ -34,7 +34,6 @@ export default function Quiz() {
     return (
         <Flex w="100%" my="6" maxWidth={1920} mx="auto" alignContent="center" justifyContent="center" flexDir="column" alignItems="center" position="relative" >
             
-            {/* <SlideFade offsetY='20px' in={fadeState}> */}
                 {showHome ? <Home />
                 : (
                     <>
@@ -81,7 +80,6 @@ export default function Quiz() {
                         }
                     </>
                 )}
-            {/* </SlideFade> */}
         </Flex>
     )
 }

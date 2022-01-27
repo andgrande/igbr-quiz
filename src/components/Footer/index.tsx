@@ -8,7 +8,7 @@ export default function Footer() {
             mb="4"
         >
             <Text align="center" fontSize={{ base: "12px", md: "16px" }}>
-                © 2021, por Camila Paccini
+                © 2022, por Camila Paccini
             </Text>
         </Box>
     )
