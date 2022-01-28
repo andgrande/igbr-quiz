@@ -7,7 +7,6 @@ import Footer from '../components/Footer';
 import { QuestionsProvider } from '../hooks/useQuestions';
 
 import { theme } from '../styles/theme';
-import Favicon from '../components/Favicon';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,8 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QuestionsProvider>
         <Flex flexDir={"column"} minHeight={"100vh"} >
           <Head>
-            <title>Camila's Quiz</title>
-            {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
+            <title>{"Camila's Quiz"}</title>
           </Head>
           <Header />
           <Component {...pageProps} />
