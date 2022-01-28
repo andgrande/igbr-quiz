@@ -1,5 +1,6 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Favicon from '../components/Favicon';
 
 import { theme } from '../styles/theme';
 
@@ -11,6 +12,8 @@ export default class MyDocument extends Document {
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
                     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+
+                    <Favicon />
                 </Head>
                 <body>
                     {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
