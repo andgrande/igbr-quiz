@@ -1,10 +1,12 @@
 import { Heading, Flex, IconButton, useColorMode } from "@chakra-ui/react";
-import { RiMoonLine, RiSunLine, RiRefreshLine } from "react-icons/ri";
-import { useQuestionsContext } from "../../hooks/useQuestions";
+import { RiMoonLine, RiSunLine, RiRefreshLine, RiLogoutCircleRLine } from "react-icons/ri";
+import { useQuestionsContext } from "../../contexts/useQuestions";
+import { useAuth } from "../../contexts/useAuth";
 
 export default function Header() {
     const { colorMode, toggleColorMode } = useColorMode();
     const { showHome, resultsReady, handleLoadQuestions } = useQuestionsContext();
+    const { authUser, signOut } = useAuth();
 
     return (
         <Flex 
@@ -40,6 +42,16 @@ export default function Header() {
                     color="bg"
                     colorScheme="color"
                     onClick={() => handleLoadQuestions() }
+                />
+            )}
+            {authUser?.uid && (
+                <IconButton
+                    aria-label="Sair"
+                    icon={<RiLogoutCircleRLine />}
+                    fontSize="20" 
+                    color="bg"
+                    colorScheme="color"
+                    onClick={() => signOut() }
                 />
             )}
         </Flex>
