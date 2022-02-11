@@ -18,7 +18,6 @@
 # misc
 .DS_Store
 *.pem
-draft.md
 
 # debug
 npm-debug.log*

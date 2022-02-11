@@ -153,6 +153,4 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
     )
 }
 
-export function useQuestionsContext() {
-    return useContext(QuestionsContext);
-}
+export const useQuestionsContext: () => QuestionsProviderData = (): QuestionsProviderData => useContext(QuestionsContext);

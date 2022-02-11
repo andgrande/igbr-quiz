@@ -1,5 +1,5 @@
 import { Button, Flex, Spinner, Text } from "@chakra-ui/react";
-import { useQuestionsContext } from "../../hooks/useQuestions";
+import { useQuestionsContext } from "../../contexts/useQuestions";
 
 import { GrRefresh } from "react-icons/gr";
 

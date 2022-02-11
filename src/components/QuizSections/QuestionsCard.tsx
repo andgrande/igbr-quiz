@@ -1,5 +1,5 @@
 import { Box, Button, Text, useRadioGroup, VStack } from "@chakra-ui/react";
-import { useQuestionsContext } from "../../hooks/useQuestions";
+import { useQuestionsContext } from "../../contexts/useQuestions";
 import RadioCard from "./RadioCard";
 
 export default function QuestionsCard() {

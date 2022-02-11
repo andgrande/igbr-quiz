@@ -4,9 +4,10 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-import { QuestionsProvider } from '../hooks/useQuestions';
+import { QuestionsProvider } from '../contexts/useQuestions';
 
 import { theme } from '../styles/theme';
+import { AuthUserProvider } from '../contexts/useAuth';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,9 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Head>
             <title>{"Camila's Quiz"}</title>
           </Head>
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
+          <AuthUserProvider>
+            <Header />
+              <Component {...pageProps} />
+            <Footer />
+          </AuthUserProvider>
         </Flex>
       </QuestionsProvider>
     </ChakraProvider>

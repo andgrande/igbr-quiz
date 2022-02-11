@@ -1,5 +1,5 @@
 import { Box, Flex, useColorMode, useMediaQuery } from "@chakra-ui/react"
-import { useQuestionsContext } from "../../hooks/useQuestions";
+import { useQuestionsContext } from "../../contexts/useQuestions";
 import BeginButton from "./BeginButton";
 
 export const Home = () => {

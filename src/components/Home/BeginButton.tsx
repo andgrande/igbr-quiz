@@ -1,5 +1,5 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { useQuestionsContext } from "../../hooks/useQuestions";
+import { useQuestionsContext } from "../../contexts/useQuestions";
 
 interface InternProp {
     fixedColor?: string;

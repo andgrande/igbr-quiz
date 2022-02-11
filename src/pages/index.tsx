@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Box, Flex, IconButton , Spinner, useColorMode } from "@chakra-ui/react";
-import { useQuestionsContext } from '../hooks/useQuestions';
+import { useQuestionsContext } from '../contexts/useQuestions';
 import QuestionsCard from "../components/QuizSections/QuestionsCard";
 import QuizResult from "../components/QuizSections/QuizResult";
 import { Home } from '../components/Home';
@@ -14,22 +14,14 @@ export default function Quiz() {
         questions, 
         resultsReady, 
         quizResults, 
-        handleLoadQuestions, 
+        handleLoadQuestions,
         handleDecreaseQuestionNumber, 
         handleIncreaseQuestionNumber 
     } = useQuestionsContext();
-    const { colorMode } = useColorMode();
-    // const [ fadeState, setFadeState ] = useState(true);
 
     useEffect(() => {
         handleLoadQuestions();
     }, []);
-
-    // const handleFade = () => {
-    //     setFadeState(false)
-    //     setTimeout(() => setFadeState(true), 300)
-        
-    // };
 
     return (
         <Flex w="100%" my="6" maxWidth={1920} mx="auto" alignContent="center" justifyContent="center" flexDir="column" alignItems="center" position="relative" >
