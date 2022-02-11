@@ -15,12 +15,8 @@ export default async function FirebaseSignInWithEmailAndPassword(request: NextAp
 
             return { uid, email };
         })
-        .catch(error => {
-            const errorCode = error.code;
-            const errorMsg = error.message;
-            console.log("Code: ", errorCode, " - Message: ", errorMsg);
-
-            return response.status(400).json({ errorCode, errorMsg });
+        .catch(err => {
+            return response.status(400).json({ error: "Invalid credentials" });
         });
 
     return response.status(200).json({ credential });
