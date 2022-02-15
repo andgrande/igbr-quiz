@@ -11,6 +11,8 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
             signInWithEmailLink(FirebaseAuth, email, window.location.href)
                 .then((result) => {
                     console.log(result);
+
+                    return response.status(200).json({ result });
                 })
                 .catch((error) => {
                     return response.status(400).json({ message: 'Error while signing in.'})
@@ -18,6 +20,6 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
         }
         
     } catch (error) {
-        return response.status(400).json({ error: ""});
+        return response.status(400).json({ error});
     }
 }

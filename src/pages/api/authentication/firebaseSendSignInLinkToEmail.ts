@@ -8,7 +8,7 @@ export default async function FirebaseSendSingInLinkToEmail (request: NextApiReq
     const { email } = request.body;
 
     const actionCodeSettings = {
-        url: 'https://app.camilapaccini.com/admin,',
+        url: 'https://app.camilapaccini.com/validatelogin',
         handleCodeInApp: true,
         iOS: {
             bundleId: 'com.example.ios'
