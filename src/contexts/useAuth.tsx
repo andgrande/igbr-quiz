@@ -18,7 +18,7 @@ interface AuthUserProps {
 interface AuthUserContextData {
     signIn: ({ email, password }: SignInData) => Promise<ToastId | void>;
     sendSignInLink: ({ email }: SignInData) => void;
-    signInWithLink: ({ email }: SignInData) => void;
+    signInWithLink: ({ email }?: SignInData) => void;
     signOut: () => void;
     authUser: AuthUserProps | undefined;
     isLoading: boolean;
@@ -78,9 +78,14 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
         const email = window.localStorage.getItem('signInEmail');
 
         try {
-            await api_fireabase.post('firebaseSignInWithLink', { email });
+            setIsLoading(true);
+            const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
+
+            console.log(data)
+        } catch (error) {
+            console.log(error)  
         } finally {
-            
+            setIsLoading(false);
         }
     }
 
