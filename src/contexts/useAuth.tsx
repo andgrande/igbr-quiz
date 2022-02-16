@@ -1,6 +1,8 @@
 import { createContext, useContext, ReactNode, useState } from 'react';
 import { ToastId, useToast } from '@chakra-ui/react';
 import { api_fireabase } from '../services/api_faunadb';
+import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
+import FirebaseAuth from '../services/firebase_auth';
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -75,15 +77,30 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
     }
 
     const signInWithLink = async () => {
-        const email = window.localStorage.getItem('signInEmail');
+        // const email = window.localStorage.getItem('signInEmail');
 
         try {
             setIsLoading(true);
-            const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
+            // const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
 
-            console.log(data)
+            // console.log(data)
+
+            if (isSignInWithEmailLink(FirebaseAuth, window.location.href)) {
+                const email = window.localStorage.getItem('signInEmail') || `andgrande@hotmail.com`;
+                console.log('isSignInWithEmailLink')
+
+                signInWithEmailLink(FirebaseAuth, email, window.location.href)
+                    .then((result) => {
+                        console.log('signInWithEmailLink')
+                        console.log(result);
+    
+                    })
+                    .catch((error) => {
+                        console.log({ error: error, message: 'Error while signing in.'})
+                    })
+            }
         } catch (error) {
-            console.log(error)  
+            console.log('aqui erro   ', error)  
         } finally {
             setIsLoading(false);
         }
