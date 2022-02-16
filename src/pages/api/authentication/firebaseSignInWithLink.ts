@@ -12,7 +12,7 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
                 .then((result) => {
                     const { email, uid } = result.user;
 
-                    return response.status(200).json({ result: email, uid });
+                    return response.status(200).json({ result: { email, uid }});
                 })
                 .catch((error) => {
                     return response.status(400).json({ message: 'Error while signing in.'});

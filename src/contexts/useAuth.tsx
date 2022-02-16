@@ -83,6 +83,7 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
         } catch (error) {
             console.log(error)  
         } finally {
+            window.localStorage.removeItem('signInEmail');
             setIsLoading(false);
         }
     }
