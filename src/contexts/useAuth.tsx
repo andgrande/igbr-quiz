@@ -13,7 +13,7 @@ interface SignInData {
 }
 interface AuthUserProps {
     uid: string;
-    email: string;
+    email: string | null;
     token?: string;
 }
 
@@ -89,7 +89,8 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
                 signInWithEmailLink(FirebaseAuth, email, window.location.href)
                     .then((result) => {
                         window.localStorage.removeItem('signInEmail');
-                        const { email: string, uid } = result.user;
+                        const { email, uid } = result.user;
+                        console.log(email,'   ', uid);
                         setAuthUser({ uid, email });
                     })
                     .catch((error) => {

@@ -9,14 +9,16 @@ export default function ValidateLogin() {
     useEffect(() => {
         try {
             Promise.resolve(signInWithLink());
-        } finally {
+        } catch {
+            push('/signin');
+        } 
+        finally {
             push('/admin');
         }
     }, []);
 
     return (
         <div>
-            Validating login
         </div>
     )
 }
