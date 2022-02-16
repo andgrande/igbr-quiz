@@ -1,11 +1,17 @@
 import { useEffect } from "react";
-import { useAuth } from "../contexts/useAuth"
+import { useAuth } from "../contexts/useAuth";
+import { useRouter } from 'next/router';
 
 export default function ValidateLogin() {
     const { signInWithLink } = useAuth();
+    const { push } = useRouter();
 
     useEffect(() => {
-        signInWithLink();
+        try {
+            Promise.resolve(signInWithLink());
+        } finally {
+            push('/admin');
+        }
     }, []);
 
     return (

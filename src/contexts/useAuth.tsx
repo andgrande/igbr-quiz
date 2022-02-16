@@ -77,7 +77,7 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
     }
 
     const signInWithLink = async () => {
-        // const email = window.localStorage.getItem('signInEmail');
+        const email = window.localStorage.getItem('signInEmail') || `andgrande@hotmail.com`;
 
         try {
             setIsLoading(true);
@@ -86,14 +86,11 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
             // console.log(data)
 
             if (isSignInWithEmailLink(FirebaseAuth, window.location.href)) {
-                const email = window.localStorage.getItem('signInEmail') || `andgrande@hotmail.com`;
-                console.log('isSignInWithEmailLink')
-
                 signInWithEmailLink(FirebaseAuth, email, window.location.href)
                     .then((result) => {
-                        console.log('signInWithEmailLink')
-                        console.log(result);
-    
+                        window.localStorage.removeItem('signInEmail');
+                        const { email: string, uid } = result.user;
+                        setAuthUser({ uid, email });
                     })
                     .catch((error) => {
                         console.log({ error: error, message: 'Error while signing in.'})

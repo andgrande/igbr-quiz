@@ -20,6 +20,6 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
         }
         
     } catch (error) {
-        return response.status(400).json({ error});
+        return response.status(401).json({ error });
     }
 }
