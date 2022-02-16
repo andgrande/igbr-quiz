@@ -7,9 +7,10 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
 
     try {
         if (isSignInWithEmailLink(FirebaseAuth, currentHref)) {
-
+            
             signInWithEmailLink(FirebaseAuth, email, currentHref)
                 .then((result) => {
+                    console.log('a')
                     const { email, uid } = result.user;
 
                     return response.status(200).json({ result: { email, uid }});
@@ -18,6 +19,7 @@ export default async function FirebaseSignInWithLink(request: NextApiRequest, re
                     return response.status(400).json({ message: 'Error while signing in.'});
                 })
         }
+        return response.status(400).json({ message: 'Invalid sign in method.'});
         
     } catch (error) {
         return response.status(401).json({ error });

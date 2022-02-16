@@ -22,7 +22,8 @@
 
 > 2.0
 
-[x] - Autenticação de usuário
+[x] - Autenticação de usuário por email e senha
+[x] - Autenticação de usuário por link de email
 [x] - Impedir acesso sem autenticação
     [x] - Login salva token no contexto
     [x] - Logout remove token do contexto

@@ -70,18 +70,20 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
     }
 
     const signInWithLink = async () => {
-        const email = window.localStorage.getItem('signInEmail') || `andgrande@hotmail.com`;
         const currentHref = window.location.href;
+        let email = window.localStorage.getItem('signInEmail');
+
+        if (!email) email = window.prompt('Please provide your email for confirmation');
 
         try {
             setIsLoading(true);
             const { data } = await api_fireabase.post('firebaseSignInWithLink', { email, currentHref });
 
-            console.log(data)
+            if (!data.result) throw new Error('Credentials could not be validated!');
 
             setAuthUser({ uid: data.result.uid, email: data.result.email });
         } catch (error) {
-            console.log(error)  
+            console.log(error);
         } finally {
             window.localStorage.removeItem('signInEmail');
             setIsLoading(false);

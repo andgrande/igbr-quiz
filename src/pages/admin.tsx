@@ -11,8 +11,6 @@ export default function Admin (a: number) {
         if (!authUser?.uid && !isLoading) router.push('/signin');
     }, [authUser, isLoading]);
 
-    console.log(authUser);
-    
     return (<>
         {authUser?.uid && (
             <div>
