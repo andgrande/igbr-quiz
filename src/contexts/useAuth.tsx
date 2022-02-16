@@ -1,9 +1,6 @@
 import { createContext, useContext, ReactNode, useState } from 'react';
 import { ToastId, useToast } from '@chakra-ui/react';
 import { api_fireabase } from '../services/api_faunadb';
-import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
-import FirebaseAuth from '../services/firebase_auth';
-
 interface AuthProviderProps {
     children: ReactNode;
 }
@@ -25,9 +22,6 @@ interface AuthUserContextData {
     authUser: AuthUserProps | undefined;
     isLoading: boolean;
 }
-
-// const e_mail = 'andgrande@hotmail.com';
-// const password = 'Pass&1234';
 
 const AuthUserContext = createContext<AuthUserContextData>({} as AuthUserContextData);
 
@@ -73,15 +67,15 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
                 isClosable: true,
             })
         }
-        
     }
 
     const signInWithLink = async () => {
         const email = window.localStorage.getItem('signInEmail') || `andgrande@hotmail.com`;
+        const currentHref = window.location.href;
 
         try {
             setIsLoading(true);
-            const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
+            const { data } = await api_fireabase.post('firebaseSignInWithLink', { email, currentHref });
 
             console.log(data)
 

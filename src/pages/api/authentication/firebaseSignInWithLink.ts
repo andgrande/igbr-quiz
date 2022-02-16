@@ -3,12 +3,12 @@ import { isSignInWithEmailLink, signInWithEmailLink } from 'firebase/auth';
 import FirebaseAuth from "../../../services/firebase_auth";
 
 export default async function FirebaseSignInWithLink(request: NextApiRequest, response: NextApiResponse) {
-    const { email } = request.body;
+    const { email, currentHref } = request.body;
 
     try {
-        if (isSignInWithEmailLink(FirebaseAuth, window.location.href)) {
+        if (isSignInWithEmailLink(FirebaseAuth, currentHref)) {
 
-            signInWithEmailLink(FirebaseAuth, email, window.location.href)
+            signInWithEmailLink(FirebaseAuth, email, currentHref)
                 .then((result) => {
                     const { email, uid } = result.user;
 
