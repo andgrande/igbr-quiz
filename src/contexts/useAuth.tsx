@@ -81,24 +81,13 @@ export function AuthUserProvider({ children }: AuthProviderProps): JSX.Element {
 
         try {
             setIsLoading(true);
-            // const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
+            const { data } = await api_fireabase.post('firebaseSignInWithLink', { email });
 
-            // console.log(data)
+            console.log(data)
 
-            if (isSignInWithEmailLink(FirebaseAuth, window.location.href)) {
-                signInWithEmailLink(FirebaseAuth, email, window.location.href)
-                    .then((result) => {
-                        window.localStorage.removeItem('signInEmail');
-                        const { email, uid } = result.user;
-                        console.log(email,'   ', uid);
-                        setAuthUser({ uid, email });
-                    })
-                    .catch((error) => {
-                        console.log({ error: error, message: 'Error while signing in.'})
-                    })
-            }
+            setAuthUser({ uid: data.result.uid, email: data.result.email });
         } catch (error) {
-            console.log('aqui erro   ', error)  
+            console.log(error)  
         } finally {
             setIsLoading(false);
         }
