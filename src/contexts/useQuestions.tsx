@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { QuestionsParams, questions as tempQuestions } from '../generics/QuestionsOptions';
+import { QuestionsParams, questions as tempQuestions } from '../generics/QuestionsFileTemplate';
 import { useMediaQuery, useToast,  } from '@chakra-ui/react';
 import { api_faunadb } from '../services/api_faunadb';
 import axios from 'axios';
