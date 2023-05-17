@@ -38,11 +38,14 @@ export function QuestionsProvider({ children }: QuestionsProviderProps): JSX.Ele
     const [ questions, setQuestions ] = useState<QuestionsParams[]>([
         {
             id: 1,
-            question: '',
-            options: [
-                { option: 'A', description: ''},
-                { option: 'B', description: ''},
-            ],
+            language: [{
+                idiom: '',
+                question: '',
+                options: [
+                    { option: 'A', description: ''},
+                    { option: 'B', description: ''},
+                ],
+            }],
             answered: false,
             answer: null,
     }]);

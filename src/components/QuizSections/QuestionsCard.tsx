@@ -1,5 +1,6 @@
 import { Box, Button, Text, useRadioGroup, VStack } from "@chakra-ui/react";
 import { useQuestionsContext } from "../../contexts/useQuestions";
+import { useLanguageContext } from "../../contexts/useLanguage";
 import RadioCard from "./RadioCard";
 
 export default function QuestionsCard() {
@@ -8,6 +9,11 @@ export default function QuestionsCard() {
         questions,
         handleCheckResults,
     } = useQuestionsContext();
+
+    const { languagePosition } = useLanguageContext();
+
+    console.log("languagePosition")
+    console.log(languagePosition)
 
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: 'framework',
@@ -19,11 +25,11 @@ export default function QuestionsCard() {
     return (
         <Box>
             <Text as="h3" fontSize={{ sm: '24px', md: "28px", lg: "32px" }} mb={8}>
-                {questions[questionOption].id}. {questions[questionOption].question} 
+                {questions[questionOption].id}. {questions[questionOption].language[languagePosition].question} 
             </Text>
 
             <VStack {...group} mb={8} >
-                {questions[questionOption].options.map(value => {
+                {questions[questionOption].language[languagePosition].options.map(value => {
                     const radio = getRadioProps({
                         value: value.description, checked: questions[questionOption].answer === value.option 
                     })

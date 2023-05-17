@@ -1,12 +1,20 @@
-import { Heading, Flex, IconButton, useColorMode } from "@chakra-ui/react";
+import { Heading, Flex, IconButton, useColorMode, Select, Button } from "@chakra-ui/react";
 import { RiMoonLine, RiSunLine, RiRefreshLine, RiLogoutCircleRLine } from "react-icons/ri";
 import { useQuestionsContext } from "../../contexts/useQuestions";
+import { useLanguageContext } from "../../contexts/useLanguage";
 import { useAuth } from "../../contexts/useAuth";
 
 export default function Header() {
     const { colorMode, toggleColorMode } = useColorMode();
     const { showHome, resultsReady, handleLoadQuestions } = useQuestionsContext();
+    const { handleChangeLanguage } = useLanguageContext();
     const { authUser, signOut } = useAuth();
+
+    const t = ['a', 'b', 'c'];
+
+    function handleSelectLanguage(v) {
+        console.log(v)
+    }
 
     return (
         <Flex 
@@ -33,6 +41,20 @@ export default function Header() {
                 colorScheme="color"
                 onClick={toggleColorMode}
             />
+
+            <select placeholder="🔤"
+                // width="20"
+                onChange={e => handleChangeLanguage(e.target.value)}
+            >
+                {t.map(opt => <option value={opt}>{opt}</option>)}
+                
+                <option value='fr'>🇫🇷</option>
+                <option value='pt'>🇧🇷</option>
+            </select>
+
+            <Button type="submit"
+                // onClick={() => handleSelectLanguage()}
+            >Subermet</Button>
             {!showHome && !resultsReady && (
                 <IconButton
                     aria-label="Reiniciar quiz"
